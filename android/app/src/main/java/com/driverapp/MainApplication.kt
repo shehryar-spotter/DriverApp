@@ -32,6 +32,7 @@ class MainApplication : Application(), ReactApplication {
     get() = getDefaultReactHost(applicationContext, reactNativeHost)
 
   override fun onCreate() {
+    setTheme(R.style.AppTheme)
     super.onCreate()
     loadReactNative(this)
   }
