@@ -3,14 +3,8 @@ import { Platform, SafeAreaView, StatusBar, StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import StackNavigator from './src/navigation/Stack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import SplashScreen from './src/pages/SplashScreen/SplashScreen';
 
 function App() {
-    const [loading, setLoading] = React.useState(true);
-    React.useEffect(() => {
-        setTimeout(() => setLoading(false), 2000);
-    }, []);
-    if (loading) return <SplashScreen />;
 
     return (
         <SafeAreaProvider>

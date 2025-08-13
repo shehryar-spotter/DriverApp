@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { Image, StyleSheet, View } from 'react-native';
 import { AppColors } from '../../constants/Colors.ts';
 import { Images } from '../../assets/Images';
 import { FontSize } from '../../constants/Sizes.ts';
@@ -19,7 +19,12 @@ const styles = StyleSheet.create({
         backgroundColor: AppColors.primary,
     },
     logo: { width: 100, height: 100, resizeMode: 'contain' },
-    text: { marginTop: 20, fontSize: FontSize.xxl, color: AppColors.white, fontWeight: '600' },
+    text: {
+        marginTop: 20,
+        fontSize: FontSize.xxl,
+        color: AppColors.white,
+        fontWeight: '600',
+    },
 });
 
 export default SplashScreen;
