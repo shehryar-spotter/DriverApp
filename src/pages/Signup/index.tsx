@@ -221,7 +221,7 @@ const styles = StyleSheet.create({
     },
     content: {
         flex: 1,
-        justifyContent: 'center',
+        justifyContent: 'center'
     },
     title: {
         fontSize: 20,
