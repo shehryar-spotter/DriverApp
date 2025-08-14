@@ -8,12 +8,14 @@ import CustomButton from '../../components/CustomButton';
 import { FontSize, MetricSizes } from '../../constants/Sizes.ts';
 import { AppColors } from '../../constants/Colors.ts';
 import { useNavigation } from '@react-navigation/native';
-import { APP_STACK, SIGNUP_SCREEN } from '../../constants/Screens.ts';
-import { AuthStackParamList, RootStackParamList } from '../../constants/StackParams.ts';
+import { SIGNUP_SCREEN } from '../../constants/Screens.ts';
+import { AuthStackParamList } from '../../constants/StackParams.ts';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { LoginFormData } from '../../constants/TypesAndInterfaces.ts';
+import { useDispatch } from 'react-redux';
+import { login } from '../../features/auth/authSlice.ts';
 
-type RootNavProp = NativeStackNavigationProp<RootStackParamList & AuthStackParamList>;
+type RootNavProp = NativeStackNavigationProp<AuthStackParamList>;
 
 const schema = yup.object({
     email: yup
@@ -28,6 +30,7 @@ const schema = yup.object({
 
 const Login = () => {
     const navigation = useNavigation<RootNavProp>()
+    const dispatch = useDispatch()
     const { control, handleSubmit } = useForm<LoginFormData>({
         resolver: yupResolver(schema),
     });
@@ -35,7 +38,10 @@ const Login = () => {
     const onSubmit = (data: LoginFormData) => {
         console.log('Login Data:', data);
         if (data?.email?.toLowerCase() === "tester@spotter.ai" && data?.password?.toLowerCase() === "test111") {
-            navigation.navigate(APP_STACK)
+            dispatch(login({
+                user:data,
+                isLoggedIn: true
+            }));
         }
     };
 
