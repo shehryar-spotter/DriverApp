@@ -11,13 +11,9 @@ import { useNavigation } from '@react-navigation/native';
 import { APP_STACK, SIGNUP_SCREEN } from '../../constants/Screens.ts';
 import { AuthStackParamList, RootStackParamList } from '../../constants/StackParams.ts';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { LoginFormData } from '../../constants/TypesAndInterfaces.ts';
 
 type RootNavProp = NativeStackNavigationProp<RootStackParamList & AuthStackParamList>;
-
-type LoginFormData = {
-    email: string;
-    password: string;
-};
 
 const schema = yup.object({
     email: yup
@@ -38,7 +34,9 @@ const Login = () => {
 
     const onSubmit = (data: LoginFormData) => {
         console.log('Login Data:', data);
-        navigation.navigate(APP_STACK)
+        if (data?.email?.toLowerCase() === "tester@spotter.ai" && data?.password?.toLowerCase() === "test111") {
+            navigation.navigate(APP_STACK)
+        }
     };
 
     const navigateToSignup = () => {

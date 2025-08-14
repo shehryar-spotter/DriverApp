@@ -8,19 +8,8 @@ import CustomInputField from '../../components/CustomInputField';
 import CustomButton from '../../components/CustomButton';
 import { FontSize, MetricSizes } from '../../constants/Sizes.ts';
 import { AppColors } from '../../constants/Colors.ts';
+import { SignUpFormData } from '../../constants/TypesAndInterfaces.ts';
 
-type FormData = {
-    name: string;
-    phone: string;
-    email: string;
-    mcNumber: string;
-    companyName: string;
-    streetAddress: string;
-    city: string;
-    state: string;
-    zipCode: string;
-    dotNumber: string;
-};
 
 const schema = (step: number) =>
     yup.object().shape({
@@ -68,7 +57,7 @@ const Signup = () => {
         handleSubmit,
         trigger,
         getValues,
-    } = useForm<FormData>({
+    } = useForm<SignUpFormData>({
         resolver: yupResolver(schema(step)),
         mode: 'onTouched',
         defaultValues: {
