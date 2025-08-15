@@ -10,69 +10,74 @@ import { FontSize, MetricSizes } from '../../constants/Sizes.ts';
 import { AppColors } from '../../constants/Colors.ts';
 import { SignUpFormData } from '../../constants/TypesAndInterfaces.ts';
 
-
 const schema = (step: number) =>
     yup.object().shape({
-        name: step === 0
-            ? yup.string().required('Name is required')
-            : yup.string(),
-        phone: step === 0
-            ? yup.string().required('Phone is required')
-            : yup.string(),
-        email: step === 0
-            ? yup
-                .string()
-                .email('Invalid email format')
-                .required('Email is required')
-            : yup.string(),
-        mcNumber: step === 1
-            ? yup.string().required('MC / MX Number is required')
-            : yup.string(),
-        companyName: step === 1
-            ? yup.string().required('Company Name is required')
-            : yup.string(),
-        streetAddress: step === 1
-            ? yup.string().required('Street Address is required')
-            : yup.string(),
-        city: step === 1
-            ? yup.string().required('City is required')
-            : yup.string(),
-        state: step === 1
-            ? yup.string().required('State is required')
-            : yup.string(),
-        zipCode: step === 1
-            ? yup.string().required('Zip code is required')
-            : yup.string(),
-        dotNumber: step === 1
-            ? yup.string().required('DOT Number is required')
-            : yup.string(),
+        name:
+            step === 0
+                ? yup.string().required('Name is required')
+                : yup.string(),
+        phone:
+            step === 0
+                ? yup.string().required('Phone is required')
+                : yup.string(),
+        email:
+            step === 0
+                ? yup
+                      .string()
+                      .email('Invalid email format')
+                      .required('Email is required')
+                : yup.string(),
+        mcNumber:
+            step === 1
+                ? yup.string().required('MC / MX Number is required')
+                : yup.string(),
+        companyName:
+            step === 1
+                ? yup.string().required('Company Name is required')
+                : yup.string(),
+        streetAddress:
+            step === 1
+                ? yup.string().required('Street Address is required')
+                : yup.string(),
+        city:
+            step === 1
+                ? yup.string().required('City is required')
+                : yup.string(),
+        state:
+            step === 1
+                ? yup.string().required('State is required')
+                : yup.string(),
+        zipCode:
+            step === 1
+                ? yup.string().required('Zip code is required')
+                : yup.string(),
+        dotNumber:
+            step === 1
+                ? yup.string().required('DOT Number is required')
+                : yup.string(),
     });
 
 const Signup = () => {
     const navigation = useNavigation();
     const [step, setStep] = useState(0);
 
-    const {
-        control,
-        handleSubmit,
-        trigger,
-        getValues,
-    } = useForm<SignUpFormData>({
-        resolver: yupResolver(schema(step)),
-        mode: 'onTouched',
-        defaultValues: {
-            name: '',
-            phone: '',
-            email: '',
-            mcNumber: '',
-            companyName: '',
-            streetAddress: '',
-            city: '',
-            state: '',
-            zipCode: '',
-            dotNumber: '',
-        },
-    });
+    const { control, handleSubmit, trigger, getValues } =
+        useForm<SignUpFormData>({
+            resolver: yupResolver(schema(step)),
+            mode: 'onTouched',
+            defaultValues: {
+                name: '',
+                phone: '',
+                email: '',
+                mcNumber: '',
+                companyName: '',
+                streetAddress: '',
+                city: '',
+                state: '',
+                zipCode: '',
+                dotNumber: '',
+            },
+        });
 
     const onNext = async () => {
         const valid = await trigger();
@@ -177,7 +182,7 @@ const Signup = () => {
             </View>
 
             {step < 2 && (
-                <View>
+                <View style={styles.buttonContainer}>
                     <CustomButton
                         text={step === 1 ? 'Submit' : 'Next'}
                         variant="primary"
@@ -226,5 +231,8 @@ const styles = StyleSheet.create({
         fontSize: FontSize.regular,
         marginBottom: MetricSizes.medium,
         textAlign: 'center',
+    },
+    buttonContainer: {
+        marginBottom: MetricSizes.large,
     },
 });
